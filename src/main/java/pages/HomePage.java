@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import testbase.WebTestBase;
 import utils.GenericUtility;
+
 import java.util.List;
 
 
@@ -20,9 +21,6 @@ public class HomePage extends WebTestBase {
 
     @FindBy(xpath = "//div[@class='css-xdicx1']")
     WebElement categorySelect;
-
-    @FindBy(xpath = "//span[@class='side-count']")
-    WebElement makeupSelect;
 
     @FindBy(xpath = "//li[@class='css-1do4irw']")
     WebElement faceClick;
@@ -39,26 +37,19 @@ public class HomePage extends WebTestBase {
     @FindBy(xpath = "//input[@placeholder='Search on Nykaa']")
     WebElement searchTextBox;
 
-    @FindBy(xpath = "//button[@class='css-1hhqgju']")
-    WebElement signInBtn;
-
-    @FindBy(xpath ="//span[text()='Sort By : relevance']")
-    WebElement sortByElement;
-
-    @FindBy(xpath ="//span[text()='Sort By : popularity']")
+    @FindBy(xpath = "//span[text()='Sort By : popularity']")
     WebElement sortByPopularity;
 
-    @FindBy(xpath = "//select[@class='css-2t5nwu']")
+    @FindBy(xpath = "//div[@class='css-xdicx1'][1]")
     WebElement dropDownTab;
 
-   @FindBy(xpath = "//button[@class='css-g4vs13']")
-   WebElement bagBtn;
+    @FindBy(xpath = "//div[@class='control-indicator radio ']")
+    WebElement radioBtn;
 
-   @FindBy(xpath = "//div[@class='control-indicator radio ']")
-   WebElement radioBtn;
+    @FindBy(xpath = "//div[text()='All Products']")
+    WebElement scrollAllProduct;
 
-   @FindBy(xpath = "//div[text()='Lakme Absolute Skin Natural Mousse Mattreal Foundation']")
-   WebElement lakmeProduct;
+
     public HomePage() {
 
         PageFactory.initElements(driver, this);
@@ -80,34 +71,40 @@ public class HomePage extends WebTestBase {
         return GenericUtility.isDisplayElement(facebookLogo);
     }
 
-    public void selectDropDown() {
+    public void selectByValue(String value) {
+        GenericUtility.selectDropDownByValue(dropDownTab, value);
+    }
 
-       dropDownTab.click();
+    public void setRadioElement() {
+
+        radioBtn.click();
+    }
+
+    public void setDropDownTab() {
         GenericUtility.selectDropDownValueByVisibleText(dropDownTab);
         GenericUtility.waitUntilElementToBeClick(dropDownTab);
-    }
-    public void setRadioElement(){
-
-       sortByPopularity.click();
-        radioBtn.click();
-
+        dropDownTab.click();
     }
 
-    public void searchMethod(String productName){
+    public void searchMethod(String productName) {
         searchTextBox.sendKeys(productName);
+        searchTextBox.sendKeys(Keys.ENTER);
 
     }
-    public void scrollByPopularity(){
+
+    public void scrollByPopularity() {
         GenericUtility.scrollByElement(sortByPopularity);
 
+    }
+
+    public void scrollByAll() {
+        sortByPopularity.click();
+        GenericUtility.scrollByElement(scrollAllProduct);
     }
 
     public void windowHandle() {
         driver.getWindowHandles();
 
 
-    }
-    public void productClick(){
-        lakmeProduct.click();
     }
 }

@@ -1,4 +1,5 @@
 package test;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,12 +25,12 @@ public class HomeTest extends WebTestBase {
     public void verifyMouseover() {
         SoftAssert softAssert = new SoftAssert();
         homePage.mouseOverOnBrand();
-        softAssert.assertEquals("Nykaa","Nykaa","mouseover is tested successfully");
+        softAssert.assertEquals("Nykaa", "Nykaa", "mouseover is tested successfully");
         softAssert.assertAll();
     }
 
     @Test()
-    public void verifyScrollMethod()  {
+    public void verifyScrollMethod() {
         SoftAssert softAssert = new SoftAssert();
         homePage.scrollDownByFacebookLogo();
         homePage.windowHandle();
@@ -37,10 +38,30 @@ public class HomeTest extends WebTestBase {
         softAssert.assertAll();
 
     }
+
     @Test
-    public void verifySearchBox(){
+    public void verifySearchBox() {
         SoftAssert softAssert = new SoftAssert();
         homePage.searchMethod(prop.getProperty("productName"));
+        softAssert.assertAll();
+    }
+
+    @Test()
+    public void verifyDropDown() {
+        SoftAssert softAssert = new SoftAssert();
+        homePage.mouseOverOnBrand();
+        homePage.scrollByAll();
+        homePage.scrollByPopularity();
+        homePage.setDropDownTab();
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void verifyRadioButton() {
+        SoftAssert softAssert = new SoftAssert();
+        homePage.mouseOverOnBrand();
+        homePage.scrollByAll();
+        homePage.setRadioElement();
         softAssert.assertAll();
     }
 

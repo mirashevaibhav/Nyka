@@ -88,10 +88,12 @@ public class GenericUtility extends WebTestBase {
     public static void selectDropDownByValue(String dropDown) {
         select.selectByValue(dropDown);
     }
+
     public static void selectDropDownValueByIndex(WebElement element, int index) {
         select = new Select(element);
         select.selectByIndex(index);
     }
+
     public static void selectDropDownByValue(WebElement element, String value) {
         select = new Select(element);
         select.selectByValue(value);
